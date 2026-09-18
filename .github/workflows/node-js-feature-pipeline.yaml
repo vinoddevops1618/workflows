@@ -14,7 +14,7 @@ on:
         type: string
 
 env: 
-  project: ${{ iputs.project }}
+  project: ${{ inputs.project }}
   component: ${{ inputs.component }}
   acc-id: 315281578625
 
