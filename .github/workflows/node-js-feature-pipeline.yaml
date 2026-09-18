@@ -16,7 +16,7 @@ on:
 env: 
   project: ${{ inputs.project }}
   component: ${{ inputs.component }}
-  acc-id: 315281578625
+  acc_id: 315281578625
 
 jobs:
   trigger:   #job name
