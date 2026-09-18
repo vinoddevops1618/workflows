@@ -38,3 +38,10 @@ jobs:
         - name: Unit tests
           id: unit_tests
           run: npm test
+
+        # - name: SonarQube Scan
+        #   uses: sonarsource/sonarqube-scan-action@v3
+        #   id: sonar_scan
+        #   env:
+        #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        #     SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
