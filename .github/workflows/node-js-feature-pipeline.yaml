@@ -84,5 +84,9 @@ jobs:
         - name: build image
           id: build_image
           run: |
-            docker build -t "${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${APP_VERSION} ."
+            docker buildx build \
+              -t ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${APP_VERSION} \
+              --push \
+              .
+
           #  docker push ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${APP_VERSION}
