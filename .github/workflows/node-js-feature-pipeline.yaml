@@ -57,7 +57,7 @@ jobs:
 
         - name: Check Dependabot Alerts
           id: library-scan
-          uses: Posture-Cybersecurity/dependabot-security-checker@v1.1.0
+          uses: Posture-Cybersecurity/dependabot-security-checker@v1.1.5
           with:
             github-tokeh: ${{ secrets.DEPENDABOT_TOKEN }}
             severities: 'critical, high' # Only check critical and high
