@@ -91,12 +91,12 @@ jobs:
         - name: Run Trivy vulnerability scanner
           uses: aquasecurity/trivy-action@v0.36.0
           with:
-            image-ref: ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version}
+            image-ref: ${{ env.acc_id }}.dkr.ecr.us-east-1.amazonaws.com/${{ env.project }}/${{ env.component }}:${{ env.version }}
             format: 'table'
             exit-code: '1'
             vuln-type: 'os'
             severity: 'CRITICAL,HIGH'
-
+            
         - name: push image
           id: push_image
           run: docker push ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version}
