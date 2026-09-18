@@ -86,6 +86,7 @@ jobs:
           run: |
             docker buildx build \
               -t ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version} .
+            echo "${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version}"
           #  docker push ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version}
 
         - name: Run Trivy vulnerability scanner
@@ -96,7 +97,7 @@ jobs:
             exit-code: '1'
             vuln-type: 'os'
             severity: 'CRITICAL,HIGH'
-            
+
         - name: push image
           id: push_image
           run: docker push ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version}
