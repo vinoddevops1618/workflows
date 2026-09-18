@@ -45,3 +45,21 @@ jobs:
         #   env:
         #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         #     SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+
+        # - name: SonarQube Quality Gate check
+        #   id: sonar-check
+        #   uses: sonarsource/sonarqube-quality-gate-action@master
+        #   with:
+        #     pollingTimeoutSec: 600
+        #   env:
+        #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        #     SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }} #OPTIONAL
+
+        - name: Check Dependabot Alerts
+          id: library-scan
+          uses: Posture-Cybersecurity/dependabot-security-checker@v1.1.0
+          with:
+            github-tokeh: ${{ secrets.DEPENDABOT_TOKEN }}
+            severities: 'critical, high' # Only check critical and high
+            output-file: 'security-report.csv'
+            fail-on-alerts: 'true' # Fail workflow if alerts found
