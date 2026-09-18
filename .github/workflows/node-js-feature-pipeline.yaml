@@ -63,3 +63,14 @@ jobs:
             severities: 'critical, high' # Only check critical and high
             output-file: 'security-report.csv'
             fail-on-alerts: 'true' # Fail workflow if alerts found
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-1
+
+        - name: Login to Amazon ECR
+          id: login-ecr
+          uses: aws-actions/amazon-ecr-login@v2
