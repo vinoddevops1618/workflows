@@ -85,16 +85,13 @@ jobs:
           id: build_image
           run: |
             docker buildx build \
-              -t ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version} \
-              --push \
-              .
+              -t ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version} .
           #  docker push ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version}
 
         - name: Run Trivy vulnerability scanner
           uses: aquasecurity/trivy-action@v0.36.0
           with:
-            image-ref: '${{ acc_id }}.dkr.ecr.us-east-1.amazonaws.com/${{ project }}/${{ component }}:${{ version }}'
-            scan-type: 'image'
+            image-ref: ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${version}
             format: 'table'
             exit-code: '1'
             vuln-type: 'os'
