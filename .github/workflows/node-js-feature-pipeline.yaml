@@ -45,6 +45,14 @@ jobs:
           id: unit_tests
           run: npm test
 
+        - name: Update status - sonar-scan
+          uses: vinoddevops1618/workflows/.github/actions/update-commit-status@main
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            context: unit-tests
+            state: ${{ steps.unit_tests.outcome }}
+            description: Unit tests ${{ steps.unit_tests.outcome }}
+            
         # - name: SonarQube Scan
         #   uses: sonarsource/sonarqube-scan-action@v3
         #   id: sonar_scan
